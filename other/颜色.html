@@ -1,0 +1,440 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>华生 | 华生</title><meta name="author" content="华生,ffxxfan@gmail.com"><meta name="copyright" content="华生"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="typora 颜色 0x00 前言  包括颜色修改和色盘  0x01 相关代码 0x01A 内联样式 span         功能 示例代码 效果说明     设置字体颜色 &lt;span style&#x3D;&quot;color:red&quot;&gt;红色文字&lt;&#x2F;span&gt; 设置文字为红色   使用十六进制颜色 &lt;span style&#x3D;&quot;c">
+<meta property="og:type" content="website">
+<meta property="og:title" content="华生">
+<meta property="og:url" content="https://ffxxfan.github.io/other/%E9%A2%9C%E8%89%B2.html">
+<meta property="og:site_name" content="华生">
+<meta property="og:description" content="typora 颜色 0x00 前言  包括颜色修改和色盘  0x01 相关代码 0x01A 内联样式 span         功能 示例代码 效果说明     设置字体颜色 &lt;span style&#x3D;&quot;color:red&quot;&gt;红色文字&lt;&#x2F;span&gt; 设置文字为红色   使用十六进制颜色 &lt;span style&#x3D;&quot;c">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ffxxfan.github.io/img/avatar.png">
+<meta property="article:published_time" content="2025-05-08T10:28:53.743Z">
+<meta property="article:modified_time" content="2025-05-08T10:28:53.743Z">
+<meta property="article:author" content="华生">
+<meta property="article:tag" content="安利安利,三维视觉">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ffxxfan.github.io/img/avatar.png"><link rel="shortcut icon" href="/img/avatar.png"><link rel="canonical" href="https://ffxxfan.github.io/other/%E9%A2%9C%E8%89%B2.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.3.5"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '华生',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'page'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+btf.addGlobalFn('pjaxSend', () => {
+  Pace.restart()
+}, 'pace_restart')
+
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">13</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-compass"></i><span> 学习</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/fundamentals/"><i class="fa-fw fas fa-desktop"></i><span> 基础知识</span></a></li><li><a class="site-page child" href="/terminology/"><i class="fa-fw fas fa-bookmark"></i><span> 术语规范</span></a></li><li><a class="site-page child" href="/paper/"><i class="fa-fw fas fa-file-alt"></i><span> 论文</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/passian/"><i class="fa-fw fas fa-lightbulb"></i><span> 安利</span></a></li><li><a class="site-page child" href="/advocate/"><i class="fa-fw fas fa-star"></i><span> 杂谈</span></a></li><li><a class="site-page child" href="/bucketList/"><i class="fa-fw fas fa-bullseye"></i><span> 人生清单</span></a></li><li><a class="site-page child" href="/detailedList/"><i class="fa-fw fas fa-tasks"></i><span> 今天做什么</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-caret-down"></i><span> 其他</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/board/"><i class="fa-fw fas fa-book"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page fixed" id="page-header" style="background-image: url(/img/index_cover.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">华生</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-compass"></i><span> 学习</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/fundamentals/"><i class="fa-fw fas fa-desktop"></i><span> 基础知识</span></a></li><li><a class="site-page child" href="/terminology/"><i class="fa-fw fas fa-bookmark"></i><span> 术语规范</span></a></li><li><a class="site-page child" href="/paper/"><i class="fa-fw fas fa-file-alt"></i><span> 论文</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/passian/"><i class="fa-fw fas fa-lightbulb"></i><span> 安利</span></a></li><li><a class="site-page child" href="/advocate/"><i class="fa-fw fas fa-star"></i><span> 杂谈</span></a></li><li><a class="site-page child" href="/bucketList/"><i class="fa-fw fas fa-bullseye"></i><span> 人生清单</span></a></li><li><a class="site-page child" href="/detailedList/"><i class="fa-fw fas fa-tasks"></i><span> 今天做什么</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-caret-down"></i><span> 其他</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/board/"><i class="fa-fw fas fa-book"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="page-site-info"><h1 id="site-title"></h1></div></header><main class="layout" id="content-inner"><div id="page"><div class="container" id="article-container"><h1 id="typora-颜色">typora 颜色</h1>
+<h2 id="x00-前言">0x00 前言</h2>
+<blockquote>
+<p>包括颜色修改和色盘</p>
+</blockquote>
+<h2 id="x01-相关代码">0x01 相关代码</h2>
+<h3 id="x01a-内联样式-span">0x01A 内联样式 span</h3>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 60%" />
+<col style="width: 24%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>功能</th>
+<th>示例代码</th>
+<th>效果说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>设置字体颜色</td>
+<td><code>&lt;span style="color:red"&gt;红色文字&lt;/span&gt;</code></td>
+<td>设置文字为红色</td>
+</tr>
+<tr class="even">
+<td>使用十六进制颜色</td>
+<td><code>&lt;span style="color:#28a745"&gt;绿色文字&lt;/span&gt;</code></td>
+<td>自定义颜色（绿色）</td>
+</tr>
+<tr class="odd">
+<td>使用 RGB 颜色</td>
+<td><code>&lt;span style="color:rgb(0, 123, 255)"&gt;蓝色文字&lt;/span&gt;</code></td>
+<td>RGB 格式设置颜色</td>
+</tr>
+<tr class="even">
+<td>设置字体大小</td>
+<td><code>&lt;span style="font-size:20px"&gt;20px 大小&lt;/span&gt;</code></td>
+<td>设置字体为 20px</td>
+</tr>
+<tr class="odd">
+<td>使用 em 设置大小</td>
+<td><code>&lt;span style="font-size:1.5em"&gt;1.5em 大小&lt;/span&gt;</code></td>
+<td>相对于父元素的大小</td>
+</tr>
+<tr class="even">
+<td>设置加粗</td>
+<td><code>&lt;span style="font-weight:bold"&gt;加粗文字&lt;/span&gt;</code></td>
+<td>字体加粗</td>
+</tr>
+<tr class="odd">
+<td>设置斜体</td>
+<td><code>&lt;span style="font-style:italic"&gt;斜体文字&lt;/span&gt;</code></td>
+<td>字体倾斜</td>
+</tr>
+<tr class="even">
+<td>多种样式组合</td>
+<td><code>&lt;span style="color:purple; font-size:18px; font-weight:bold"&gt;样式&lt;/span&gt;</code></td>
+<td>同时设置颜色、大小、粗体</td>
+</tr>
+</tbody>
+</table>
+<h3 id="x01b-内联样式-font">0x01B 内联样式 font</h3>
+<blockquote>
+<p>[!note]</p>
+<p>以下是 <code>&lt;font&gt;</code> 标签相关属性的表格总结（<strong>HTML 中已废弃，但部分 Markdown 编辑器或旧网页仍支持</strong>）：</p>
+<p>推荐使用 <code>&lt;span style="..."&gt;</code> 替代 <code>&lt;font&gt;</code>，因为 <code>&lt;font&gt;</code> 是 HTML 4 的遗留标签，在 HTML5 中已被废弃，不再推荐使用。</p>
+</blockquote>
+<table>
+<thead>
+<tr class="header">
+<th>属性名称</th>
+<th>示例</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>color</code></td>
+<td><code>&lt;font color="red"&gt;红色文字&lt;/font&gt;</code></td>
+<td>设置字体颜色（可用名称或十六进制）</td>
+</tr>
+<tr class="even">
+<td><code>size</code></td>
+<td><code>&lt;font size="4"&gt;字体大小&lt;/font&gt;</code></td>
+<td>设置字体大小（1~7，默认是3）</td>
+</tr>
+<tr class="odd">
+<td><code>face</code></td>
+<td><code>&lt;font face="Arial"&gt;Arial 字体&lt;/font&gt;</code></td>
+<td>设置字体族（如 Arial、Courier）</td>
+</tr>
+<tr class="even">
+<td>多属性组合</td>
+<td><code>&lt;font color="#00aa00" size="5" face="Verdana"&gt;组合&lt;/font&gt;</code></td>
+<td>同时设置颜色、大小和字体</td>
+</tr>
+</tbody>
+</table>
+<h2 id="x02-色盘">0x02 色盘</h2>
+<blockquote>
+<p>推荐网址：https://flatuicolors.com/</p>
+</blockquote>
+<h3 id="x02a-russian-palette">0x02A Russian Palette</h3>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://flatuicolors.com/palette/ru">🇷🇺 Russian Palette | Flat UI Colors 🎨 280 handpicked colors ready for COPY &amp; PASTE</a></p>
+</blockquote>
+<table>
+<thead>
+<tr class="header">
+<th>颜色名称</th>
+<th>示例色块</th>
+<th>Hex值</th>
+<th>RGBA值</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>CREAMY PEACH</td>
+<td><span style="background-color:#fcd5ce;">      </span></td>
+<td><code>#fcd5ce</code></td>
+<td>rgba(252, 213, 206, 1)</td>
+</tr>
+<tr class="even">
+<td>ROSY HIGHLIGHT</td>
+<td><span style="background-color:#fcd9a7;">      </span></td>
+<td><code>#fcd9a7</code></td>
+<td>rgba(252, 217, 167, 1)</td>
+</tr>
+<tr class="odd">
+<td>SOFT BLUE</td>
+<td><span style="background-color:#8eafff;">      </span></td>
+<td><code>#8eafff</code></td>
+<td>rgba(142, 175, 255, 1)</td>
+</tr>
+<tr class="even">
+<td>BREWED MUSTARD</td>
+<td><span style="background-color:#eb6f5a;">      </span></td>
+<td><code>#eb6f5a</code></td>
+<td>rgba(235, 111, 90, 1)</td>
+</tr>
+<tr class="odd">
+<td>OLD GERANIUM</td>
+<td><span style="background-color:#d86c84;">      </span></td>
+<td><code>#d86c84</code></td>
+<td>rgba(216, 108, 132, 1)</td>
+</tr>
+<tr class="even">
+<td>SAWTOOTH OAK</td>
+<td><span style="background-color:#f5925e;">      </span></td>
+<td><code>#f5925e</code></td>
+<td>rgba(245, 146, 94, 1)</td>
+</tr>
+<tr class="odd">
+<td>SUMMERTIME</td>
+<td><span style="background-color:#f9d37a;">      </span></td>
+<td><code>#f9d37a</code></td>
+<td>rgba(249, 211, 122, 1)</td>
+</tr>
+<tr class="even">
+<td>CORNFLOWER</td>
+<td><span style="background-color:#567dff;">      </span></td>
+<td><code>#567dff</code></td>
+<td>rgba(86, 125, 255, 1)</td>
+</tr>
+<tr class="odd">
+<td>TIGERLILY</td>
+<td><span style="background-color:#eb533a;">      </span></td>
+<td><code>#eb533a</code></td>
+<td>rgba(235, 83, 58, 1)</td>
+</tr>
+<tr class="even">
+<td>DEEP ROSE</td>
+<td><span style="background-color:#b9355b;">      </span></td>
+<td><code>#b9355b</code></td>
+<td>rgba(185, 53, 91, 1)</td>
+</tr>
+<tr class="odd">
+<td>PURPLE MOUNTAIN MAJESTY</td>
+<td><span style="background-color:#7b6da7;">      </span></td>
+<td><code>#7b6da7</code></td>
+<td>rgba(123, 109, 167, 1)</td>
+</tr>
+<tr class="even">
+<td>ROGUE PINK</td>
+<td><span style="background-color:#f8a3cd;">      </span></td>
+<td><code>#f8a3cd</code></td>
+<td>rgba(248, 163, 205, 1)</td>
+</tr>
+<tr class="odd">
+<td>SQUEAKY</td>
+<td><span style="background-color:#6ce1f3;">      </span></td>
+<td><code>#6ce1f3</code></td>
+<td>rgba(108, 225, 243, 1)</td>
+</tr>
+<tr class="even">
+<td>APPLE VALLEY</td>
+<td><span style="background-color:#f08889;">      </span></td>
+<td><code>#f08889</code></td>
+<td>rgba(240, 136, 137, 1)</td>
+</tr>
+<tr class="odd">
+<td>PENCIL LEAD</td>
+<td><span style="background-color:#586175;">      </span></td>
+<td><code>#586175</code></td>
+<td>rgba(88, 97, 117, 1)</td>
+</tr>
+<tr class="even">
+<td>PURPLE CORALLITE</td>
+<td><span style="background-color:#5b4b8a;">      </span></td>
+<td><code>#5b4b8a</code></td>
+<td>rgba(91, 75, 138, 1)</td>
+</tr>
+<tr class="odd">
+<td>FLAMINGO PINK</td>
+<td><span style="background-color:#f58bba;">      </span></td>
+<td><code>#f58bba</code></td>
+<td>rgba(245, 139, 186, 1)</td>
+</tr>
+<tr class="even">
+<td>BLUE CURACAO</td>
+<td><span style="background-color:#2ccbe0;">      </span></td>
+<td><code>#2ccbe0</code></td>
+<td>rgba(44, 203, 224, 1)</td>
+</tr>
+<tr class="odd">
+<td>PORCELAIN ROSE</td>
+<td><span style="background-color:#ec7174;">      </span></td>
+<td><code>#ec7174</code></td>
+<td>rgba(236, 113, 116, 1)</td>
+</tr>
+<tr class="even">
+<td>BISCAY</td>
+<td><span style="background-color:#2c354d;">      </span></td>
+<td><code>#2c354d</code></td>
+<td>rgba(44, 53, 77, 1)</td>
+</tr>
+</tbody>
+</table>
+</div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">华生</div><div class="author-info-description">一起成为魔法少女吧！<br> 去毁掉这该死的世界。
+</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">13</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/ffxxfan" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:ffxxfan@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">有问题请联系邮箱 「ffxxfan@gmail.com」。
+</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#typora-%E9%A2%9C%E8%89%B2"><span class="toc-text">typora 颜色</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#x00-%E5%89%8D%E8%A8%80"><span class="toc-text">0x00 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#x01-%E7%9B%B8%E5%85%B3%E4%BB%A3%E7%A0%81"><span class="toc-text">0x01 相关代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#x01a-%E5%86%85%E8%81%94%E6%A0%B7%E5%BC%8F-span"><span class="toc-text">0x01A 内联样式 span</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#x01b-%E5%86%85%E8%81%94%E6%A0%B7%E5%BC%8F-font"><span class="toc-text">0x01B 内联样式 font</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#x02-%E8%89%B2%E7%9B%98"><span class="toc-text">0x02 色盘</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#x02a-russian-palette"><span class="toc-text">0x02A Russian Palette</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/05/11/%E4%B8%89%E6%AC%A1%E5%81%B6%E7%84%B6%E9%80%A0%E5%B0%B1%E5%91%BD%E5%AE%9A/" title="三次偶然造就命定"><img src="https://raw.githubusercontent.com/ffxxfan/pictures/main/终应心期_裁剪.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="三次偶然造就命定"/></a><div class="content"><a class="title" href="/2025/05/11/%E4%B8%89%E6%AC%A1%E5%81%B6%E7%84%B6%E9%80%A0%E5%B0%B1%E5%91%BD%E5%AE%9A/" title="三次偶然造就命定">三次偶然造就命定</a><time datetime="2025-05-11T00:00:00.000Z" title="发表于 2025-05-11 08:00:00">2025-05-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/04/26/China%203DV%20%E5%8F%82%E4%BC%9A/" title="2025 3DV 参会感悟"><img src="https://raw.githubusercontent.com/ffxxfan/pictures/main/bf98b420-920c-4890-8f8a-aeb8c47ce1b5.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2025 3DV 参会感悟"/></a><div class="content"><a class="title" href="/2025/04/26/China%203DV%20%E5%8F%82%E4%BC%9A/" title="2025 3DV 参会感悟">2025 3DV 参会感悟</a><time datetime="2025-04-25T16:00:00.000Z" title="发表于 2025-04-26 00:00:00">2025-04-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/04/24/Prompt-to-Prompt%20Image%20Editing%20with%20Cross%20Attention%20Control%20%E7%BF%BB%E8%AF%91/" title="Prompt-to-Prompt Image Editing with Cross Attention Control"><img src="https://raw.githubusercontent.com/ffxxfan/pictures/main/20250424002826556.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Prompt-to-Prompt Image Editing with Cross Attention Control"/></a><div class="content"><a class="title" href="/2025/04/24/Prompt-to-Prompt%20Image%20Editing%20with%20Cross%20Attention%20Control%20%E7%BF%BB%E8%AF%91/" title="Prompt-to-Prompt Image Editing with Cross Attention Control">Prompt-to-Prompt Image Editing with Cross Attention Control</a><time datetime="2025-04-23T16:00:00.000Z" title="发表于 2025-04-24 00:00:00">2025-04-24</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2025 By 华生</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div><div class="footer_custom_text">一起学会闪闪发光吧！</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.3.5"></script><script src="/js/main.js?v=5.3.5"></script><script src="/js/tw_cn.js?v=5.3.5"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.4/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
