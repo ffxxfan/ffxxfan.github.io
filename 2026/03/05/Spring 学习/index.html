@@ -1,0 +1,674 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Spring 学习 | 华生</title><meta name="author" content="华生,ffxxfan@gmail.com"><meta name="copyright" content="华生"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Spring 学习  参考资料： Spring 全面详解：最全最详细的 Spring 基本认识和入门使用-腾讯云开发者社区-腾讯云 https:&#x2F;&#x2F;www.doubao.com&#x2F;thread&#x2F;w3f8fea04ce77a04f  0x01 什么是 Spring 0x0101 Spring 定义 0x0102 为什么使用 Spring  IoC 1（控制反转）：管理对象的创建和依">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring 学习">
+<meta property="og:url" content="https://ffxxfan.github.io/2026/03/05/Spring%20%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="华生">
+<meta property="og:description" content="Spring 学习  参考资料： Spring 全面详解：最全最详细的 Spring 基本认识和入门使用-腾讯云开发者社区-腾讯云 https:&#x2F;&#x2F;www.doubao.com&#x2F;thread&#x2F;w3f8fea04ce77a04f  0x01 什么是 Spring 0x0101 Spring 定义 0x0102 为什么使用 Spring  IoC 1（控制反转）：管理对象的创建和依">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ffxxfan.github.io/img/avatar.png">
+<meta property="article:published_time" content="2026-03-05T00:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-05T00:00:00.000Z">
+<meta property="article:author" content="华生">
+<meta property="article:tag" content="安利安利,三维视觉">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ffxxfan.github.io/img/avatar.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Spring 学习",
+  "url": "https://ffxxfan.github.io/2026/03/05/Spring%20%E5%AD%A6%E4%B9%A0/",
+  "image": "https://ffxxfan.github.io/img/avatar.png",
+  "datePublished": "2026-03-05T00:00:00.000Z",
+  "dateModified": "2026-03-05T00:00:00.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "华生",
+      "url": "https://ffxxfan.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/avatar.png"><link rel="canonical" href="https://ffxxfan.github.io/2026/03/05/Spring%20%E5%AD%A6%E4%B9%A0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.3.5"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Spring 学习',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+btf.addGlobalFn('pjaxSend', () => {
+  Pace.restart()
+}, 'pace_restart')
+
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/blue/pace-theme-minimal.min.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-compass"></i><span> 学习</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/fundamentals/"><i class="fa-fw fas fa-desktop"></i><span> 基础知识</span></a></li><li><a class="site-page child" href="/terminology/"><i class="fa-fw fas fa-bookmark"></i><span> 术语规范</span></a></li><li><a class="site-page child" href="/paper/"><i class="fa-fw fas fa-file-alt"></i><span> 论文</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/passian/"><i class="fa-fw fas fa-lightbulb"></i><span> 安利</span></a></li><li><a class="site-page child" href="/advocate/"><i class="fa-fw fas fa-star"></i><span> 杂谈</span></a></li><li><a class="site-page child" href="/bucketList/"><i class="fa-fw fas fa-bullseye"></i><span> 人生清单</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-caret-down"></i><span> 其他</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/board/"><i class="fa-fw fas fa-book"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/img/index_cover.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">华生</span></a><a class="nav-page-title" href="/"><span class="site-name">Spring 学习</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-compass"></i><span> 学习</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/fundamentals/"><i class="fa-fw fas fa-desktop"></i><span> 基础知识</span></a></li><li><a class="site-page child" href="/terminology/"><i class="fa-fw fas fa-bookmark"></i><span> 术语规范</span></a></li><li><a class="site-page child" href="/paper/"><i class="fa-fw fas fa-file-alt"></i><span> 论文</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/passian/"><i class="fa-fw fas fa-lightbulb"></i><span> 安利</span></a></li><li><a class="site-page child" href="/advocate/"><i class="fa-fw fas fa-star"></i><span> 杂谈</span></a></li><li><a class="site-page child" href="/bucketList/"><i class="fa-fw fas fa-bullseye"></i><span> 人生清单</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-caret-down"></i><span> 其他</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/board/"><i class="fa-fw fas fa-book"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Spring 学习</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-03-05T00:00:00.000Z" title="发表于 2026-03-05 08:00:00">2026-03-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-03-05T00:00:00.000Z" title="更新于 2026-03-05 08:00:00">2026-03-05</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="spring-学习">Spring 学习</h1>
+<blockquote>
+<p>参考资料：</p>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2569993">Spring 全面详解：最全最详细的 Spring 基本认识和入门使用-腾讯云开发者社区-腾讯云</a></p>
+<p>https://www.doubao.com/thread/w3f8fea04ce77a04f</p>
+</blockquote>
+<h2 id="x01-什么是-spring">0x01 什么是 Spring</h2>
+<h3 id="x0101-spring-定义">0x0101 Spring 定义</h3>
+<h3 id="x0102-为什么使用-spring">0x0102 为什么使用 Spring</h3>
+<ul>
+<li><strong>IoC <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>（控制反转）</strong>：管理对象的创建和依赖关系，开发者无需手动 <code>new</code> 对象。</li>
+<li><strong>AOP（面向切面编程）</strong>：把日志、事务等通用逻辑抽离成切面，自动作用到业务方法上，核心是代码复用和关注点分离。</li>
+<li><strong>丰富的功能</strong>：涵盖数据访问、事务管理、MVC Web 框架、测试、安全等。</li>
+<li><strong>强大的社区和生态系统</strong>：拥有庞大的用户群体、丰富的文档和第三方库支持。</li>
+<li><strong>与主流技术无缝集成</strong>：如 Hibernate, MyBatis, Redis, Kafka, Elasticsearch 等。</li>
+<li><strong>Spring Boot</strong>：极大地简化了 Spring 应用的初始搭建和开发过程。</li>
+</ul>
+<h2 id="x02-spring-的核心架构">0x02 Spring 的核心架构</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Spring 框架</span><br><span class="line">├── 基础核心：Spring Core Container（核心容器）</span><br><span class="line">├── 通用增强：AOP and Instrumentation（AOP增强）、Messaging（消息）</span><br><span class="line">├── 业务场景：Data Access/Integration（数据访问）、Web（Web开发）</span><br><span class="line">└── 辅助工具：Test（测试）</span><br></pre></td></tr></table></figure>
+<h3 id="x0201-核心基础-spring-core-container">0x0201 核心基础 Spring Core Container</h3>
+<p>这是 Spring 最核心的模块，所有其他模块都依赖它，核心作用是 <strong>实现 IoC/DI，管理所有 Bean 的生命周期</strong>。你可以把它理解成 “Spring 的大脑”，负责创建对象、注入依赖、管理对象的存活。</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">子模块</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Beans <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></td>
+<td>定义了 <code>BeanFactory</code>（IoC 容器的最基础接口），负责 Bean 的创建、注册、获取；</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Core</td>
+<td>提提供 IoC <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>/ DI <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> 的最基础功能（比如资源加载、类型转换）；</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Context<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></td>
+<td>构建于 Core 和 Beans 模块之上，提供上下文信息（ApplicationContext）。</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">SpEL (Spring Expression Language)</td>
+<td>一种运行时表达式语言，能通过表达式操作对象、取值、调用方法。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>核心总结</strong>：Core+Beans 是 IoC 的 “底层引擎”，Context 是你实际用的 “上层容器”，SpEL 是 “操作容器内对象的工具”。</p>
+<h3 id="x0202-通用增强-aop-messaging">0x0202 通用增强 AOP Messaging</h3>
+<h4 id="x020201-aop-and-instrumentationaop-增强">0x020201 AOP and Instrumentation（AOP 增强）</h4>
+<p>实现 AOP（面向切面编程），提供 “横切逻辑增强” 的能力；Instrumentation 是辅助功能（类加载增强、字节码操作），日常开发很少直接用。就相当于给你的业务方法 “加外挂”—— 比如给所有数据库操作自动加事务、给所有接口自动加日志，不用改业务代码。</p>
+<ul>
+<li>用<code>@Transactional</code>注解实现声明式事务（底层是 AOP）；</li>
+<li>自己写<code>@Aspect</code>切面实现日志、权限校验（之前给你写的 LogAspect 就是用这个模块）；</li>
+<li>Spring 的缓存注解<code>@Cacheable</code>、异步注解<code>@Async</code>，底层都是 AOP 模块支撑。</li>
+</ul>
+<h4 id="x020202-messaging消息模块">0x020202 Messaging（消息模块）</h4>
+<p>支持消息传递相关的标准和协议，重点是 STOMP（简单文本定向消息协议）和 WebSocket，解决 “实时双向通信” 问题，比如做聊天功能、实时推送（如订单状态更新）。</p>
+<h3 id="x0203-业务场景-data-web">0x0203 业务场景 Data Web</h3>
+<h4 id="x020301-data-accessintegration数据访问-集成">0x020301 Data Access/Integration（数据访问 / 集成）</h4>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">子功能</th>
+<th style="text-align: left;">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">JDBC<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></td>
+<td style="text-align: left;">简化原生 JDBC 操作（比如封装<code>JdbcTemplate</code>，不用手动写 Connection/Statement）</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ORM<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></td>
+<td style="text-align: left;">集成主流 ORM 框架（JPA、Hibernate、MyBatis）</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">OXM</td>
+<td style="text-align: left;">对象 - XML 映射（比如把 Java 对象转 XML，或反过来）</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">JMS<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></td>
+<td style="text-align: left;">集成 JMS（Java 消息服务），对接 ActiveMQ、RabbitMQ 等消息队列</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Transactions</td>
+<td style="text-align: left;">事务管理（声明式 / 编程式）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>核心总结</strong>：只要你做 “数据库操作” 或 “消息队列交互”，就离不开这个模块；Spring Boot 中引<code>spring-boot-starter-data-jpa</code>/<code>spring-boot-starter-mybatis</code>，会自动把这个模块的核心功能引入。</p>
+<h4 id="x020302-webweb-模块">0x020302 Web（Web 模块）</h4>
+<p>专门负责 Web 应用开发，核心是 Spring MVC，也支持 WebSocket（和 Messaging 模块配合）。</p>
+<ul>
+<li>实现 MVC 架构（Controller 接收请求→Service 处理业务→View 返回响应）；</li>
+<li>处理 HTTP 请求、参数绑定、视图解析、拦截器等；</li>
+<li>支持 WebSocket（实时通信）。</li>
+</ul>
+<h3 id="x0204-辅助工具-test">0x0204 辅助工具 Test</h3>
+<p>简化 Spring 组件的单元测试 / 集成测试，整合 JUnit/TestNG，提供模拟（Mock）功能。</p>
+<ul>
+<li>用<code>@SpringBootTest</code>注解启动 Spring 上下文做集成测试，能自动注入<code>@Service</code>/<code>@Controller</code>；</li>
+<li>用<code>MockMvc</code>模拟 HTTP 请求，测试接口是否正常（不用启动 Tomcat）；</li>
+<li>用<code>@MockBean</code>模拟依赖的 Bean（比如测试 UserService 时，模拟 OrderService，避免依赖真实数据库）。</li>
+</ul>
+<h2 id="x03-实际使用逻辑">0x03 实际使用逻辑</h2>
+<p>不用刻意背每个模块的细节，实际开发中，`<code>Spring Boot</code> 已经帮你做了 “模块封装”—— 通过 <code>Starter</code> 依赖，自动引入对应模块：</p>
+<table>
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 30%" />
+<col style="width: 46%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>开发场景</th>
+<th>引入的 Starter</th>
+<th>底层包含的 Spring 模块</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>基础 Spring Boot 项目</td>
+<td>spring-boot-starter</td>
+<td>Core Container（核心容器）</td>
+</tr>
+<tr class="even">
+<td>Web 接口开发</td>
+<td>spring-boot-starter-web</td>
+<td>Core Container + Web</td>
+</tr>
+<tr class="odd">
+<td>数据库操作（MyBatis）</td>
+<td>spring-boot-starter-mybatis</td>
+<td>Core Container + Data Access + AOP</td>
+</tr>
+<tr class="even">
+<td>声明式事务</td>
+<td>spring-boot-starter-jdbc</td>
+<td>Core Container + Data Access + AOP</td>
+</tr>
+<tr class="odd">
+<td>测试</td>
+<td>spring-boot-starter-test</td>
+<td>Core Container + Test</td>
+</tr>
+<tr class="even">
+<td>Spring AI + RAG</td>
+<td>spring-ai-rag</td>
+<td>Core Container + Web（可选） + AOP（可选）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="x04-入门使用">0x04 入门使用</h2>
+<blockquote>
+<p>可以从以下方面入手，但是还是和项目一起做会印象深刻一点：</p>
+<ul>
+<li><p>从零开始搭建一个 Spring 项目</p></li>
+<li><p>AOP 入门</p></li>
+</ul>
+</blockquote>
+<h3 id="x0401-pom.xml-文件配置">0x0401 pom.xml 文件配置</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;!-- 1. 根标签：所有Maven配置的容器，指定POM版本和XML命名空间 --&gt;</span><br><span class="line">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; </span><br><span class="line">         xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">         xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;!-- 2. POM模型版本：固定值4.0.0，Maven 3+通用 --&gt;</span><br><span class="line">    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 3. 父工程配置：继承Spring Boot官方的依赖版本管理 --&gt;</span><br><span class="line">    &lt;!-- 作用：无需手动指定Spring Boot starter依赖的version，避免版本冲突 --&gt;</span><br><span class="line">    &lt;parent&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;!-- 父工程组ID --&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt; &lt;!-- 父工程项目ID --&gt;</span><br><span class="line">        &lt;version&gt;4.0.3&lt;/version&gt; &lt;!-- Spring Boot版本，适配JDK17 --&gt;</span><br><span class="line">        &lt;relativePath/&gt; &lt;!-- 从Maven仓库拉取，不找本地路径 --&gt;</span><br><span class="line">    &lt;/parent&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 4. 项目唯一标识（GAV坐标）：定位当前项目 --&gt;</span><br><span class="line">    &lt;groupId&gt;com.example&lt;/groupId&gt; &lt;!-- 组ID：一般是公司/组织包名反向，如com.你的公司名 --&gt;</span><br><span class="line">    &lt;artifactId&gt;springboot-demo&lt;/artifactId&gt; &lt;!-- 项目ID：自定义项目名称 --&gt;</span><br><span class="line">    &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt; &lt;!-- 版本号：SNAPSHOT(开发版)/RELEASE(正式版) --&gt;</span><br><span class="line">    &lt;name&gt;springboot-demo&lt;/name&gt; &lt;!-- 项目名称（可选） --&gt;</span><br><span class="line">    &lt;description&gt;Spring Boot 4.0.3 + JDK17 基础模板&lt;/description&gt; &lt;!-- 项目描述（可选） --&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 5. 全局属性配置：定义可复用的变量，统一管理版本/参数 --&gt;</span><br><span class="line">    &lt;properties&gt;</span><br><span class="line">        &lt;java.version&gt;17&lt;/java.version&gt; &lt;!-- 指定JDK版本，Spring Boot会据此编译代码 --&gt;</span><br><span class="line">        &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt; &lt;!-- 源码编码 --&gt;</span><br><span class="line">        &lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt; &lt;!-- 报告编码 --&gt;</span><br><span class="line">    &lt;/properties&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 6. 依赖列表：项目所有需要的第三方库/框架都放在这里 --&gt;</span><br><span class="line">    &lt;dependencies&gt;</span><br><span class="line">        &lt;!-- 6.1 核心启动器：Spring Boot基础功能（自动配置、日志、核心API） --&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;!-- 依赖组ID --&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt; &lt;!-- 依赖项目ID --&gt;</span><br><span class="line">            &lt;!-- 无需写version：父工程已管理，自动匹配4.0.3 --&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!-- 6.2 Web启动器：开发Web/接口项目必备（包含Spring MVC、Tomcat、JSON解析） --&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!-- 6.3 AOP启动器：面向切面编程（日志、权限、性能监控） --&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-boot-starter-aop&lt;/artifactId&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!-- 6.4 数据库相关：JDBC + MySQL驱动 + JPA --&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-boot-starter-jdbc&lt;/artifactId&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;com.mysql&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;mysql-connector-j&lt;/artifactId&gt;</span><br><span class="line">            &lt;scope&gt;runtime&lt;/scope&gt; &lt;!-- 作用域：仅运行时需要，编译时不依赖 --&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-boot-starter-data-jpa&lt;/artifactId&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!-- 6.5 测试启动器：单元测试（包含JUnit 5、Spring Test、Mockito） --&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;</span><br><span class="line">            &lt;scope&gt;test&lt;/scope&gt; &lt;!-- 作用域：仅测试代码中生效 --&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!-- 6.6 Lombok：简化代码（自动生成getter/setter/构造器） --&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;lombok&lt;/artifactId&gt;</span><br><span class="line">            &lt;optional&gt;true&lt;/optional&gt; &lt;!-- 可选依赖：不传递给依赖当前项目的其他项目 --&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">    &lt;/dependencies&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 7. 构建配置：控制项目编译、打包、运行等流程 --&gt;</span><br><span class="line">    &lt;build&gt;</span><br><span class="line">        &lt;!-- 7.1 插件列表：执行构建任务的工具 --&gt;</span><br><span class="line">        &lt;plugins&gt;</span><br><span class="line">            &lt;!-- 7.1.1 Spring Boot打包插件：将项目打成可执行JAR包（包含所有依赖） --&gt;</span><br><span class="line">            &lt;plugin&gt;</span><br><span class="line">                &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">                &lt;!-- 配置Lombok支持（可选） --&gt;</span><br><span class="line">                &lt;configuration&gt;</span><br><span class="line">                    &lt;excludes&gt;</span><br><span class="line">                        &lt;exclude&gt;</span><br><span class="line">                            &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;</span><br><span class="line">                            &lt;artifactId&gt;lombok&lt;/artifactId&gt;</span><br><span class="line">                        &lt;/exclude&gt;</span><br><span class="line">                    &lt;/excludes&gt;</span><br><span class="line">                &lt;/configuration&gt;</span><br><span class="line">            &lt;/plugin&gt;</span><br><span class="line"></span><br><span class="line">            &lt;!-- 7.1.2 Maven编译插件：指定编译JDK版本（和properties中的java.version一致） --&gt;</span><br><span class="line">            &lt;plugin&gt;</span><br><span class="line">                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;</span><br><span class="line">                &lt;version&gt;3.11.0&lt;/version&gt; &lt;!-- 插件版本（可选，Maven会自动选兼容版本） --&gt;</span><br><span class="line">                &lt;configuration&gt;</span><br><span class="line">                    &lt;source&gt;17&lt;/source&gt; &lt;!-- 源码编译版本 --&gt;</span><br><span class="line">                    &lt;target&gt;17&lt;/target&gt; &lt;!-- 生成字节码的版本 --&gt;</span><br><span class="line">                &lt;/configuration&gt;</span><br><span class="line">            &lt;/plugin&gt;</span><br><span class="line">        &lt;/plugins&gt;</span><br><span class="line">    &lt;/build&gt;</span><br><span class="line">&lt;/project&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="x0402-分层架构模式">0x0402 分层架构模式</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Spring项目分层</span><br><span class="line">├── 1. 控制层（Controller）：接收请求、返回响应（面向前端）</span><br><span class="line">├── 2. 服务层（Service）：核心业务逻辑（承上启下）</span><br><span class="line">├── 3. 数据访问层（DAO/Mapper）：操作数据库（面向数据）</span><br><span class="line">├── 4. 实体层（Entity/Model）：封装数据（数据载体）</span><br><span class="line">└── 5. 工具层（Util）：通用工具（辅助所有层）</span><br><span class="line"></span><br><span class="line">前端 → Controller → Service → DAO → 数据库</span><br><span class="line">     ←            ←         ←     ←</span><br></pre></td></tr></table></figure>
+<p><strong>控制层（Controller）</strong></p>
+<ul>
+<li>“前端的对接窗口”</li>
+<li><strong>不写业务逻辑</strong>，只做 “请求接收 - 参数校验 - 调用 Service - 返回响应”；</li>
+<li>核心注解：<code>@RestController</code>、<code>@GetMapping</code>/<code>@PostMapping</code>；</li>
+</ul>
+<p><strong>服务层（Service）</strong></p>
+<ul>
+<li>核心注解：<code>@Service</code>、<code>@Transactional</code>；</li>
+<li>核心原则：<strong>所有业务逻辑都写在这里</strong>，是项目的 “核心大脑”，实现核心业务逻辑（比如下单、支付、用户注册），调用数据访问层操作数据库；</li>
+</ul>
+<p><strong>数据访问层（DAO/Mapper）</strong></p>
+<ul>
+<li>核心注解：MyBatis 用<code>@Mapper</code>，JPA 用<code>@Repository</code>，JdbcTemplate；</li>
+<li>核心原则：<strong>只写 SQL / 数据库操作</strong>，只负责和数据库交互（增删改查），不包含任何业务逻辑；</li>
+</ul>
+<p><strong>实体层（Entity/Model）</strong></p>
+<ul>
+<li><p>封装数据，作为各层之间的数据传输载体；</p></li>
+<li><p>分三层</p>
+<table>
+<thead>
+<tr class="header">
+<th>类型</th>
+<th>作用</th>
+<th>使用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Entity（实体）</td>
+<td>对应数据库表结构</td>
+<td>DAO 层和数据库交互时用</td>
+</tr>
+<tr class="even">
+<td>DTO（数据传输对象）</td>
+<td>对应前端请求 / 响应的参数</td>
+<td>Controller 层和前端交互时用</td>
+</tr>
+<tr class="odd">
+<td>VO（视图对象）</td>
+<td>封装前端展示的数据</td>
+<td>复杂页面展示（比如列表页）</td>
+</tr>
+</tbody>
+</table></li>
+<li><p>核心注解：Lombok 的<code>@Data</code>（简化代码）；</p></li>
+<li><p>核心原则：<strong>不同场景用不同的实体类</strong>，避免一个类走天下（比如前端不需要的字段不传给前端）；</p></li>
+</ul>
+<p><strong>工具层（Util）</strong></p>
+<ul>
+<li>常用工具：日期处理、字符串处理、加密、全局异常处理、常量类（比如<code>Constants</code>）；</li>
+<li>提供全局异常处理、常量定义等；</li>
+<li>不依赖其他业务层，通用、无状态。</li>
+</ul>
+<h2 id="x05-常用注解速查表">0x05 常用注解速查表</h2>
+<h3 id="x0501-常用注解速查表">0x0501 常用注解速查表</h3>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">注解</th>
+<th style="text-align: left;">用途</th>
+<th style="text-align: left;">所在模块</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="citation" data-cites="Component">@Component</span></td>
+<td style="text-align: left;">通用组件注解</td>
+<td style="text-align: left;">spring-context</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="citation" data-cites="Service">@Service</span></td>
+<td style="text-align: left;">服务层组件</td>
+<td style="text-align: left;">spring-context</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="citation" data-cites="Repository">@Repository</span></td>
+<td style="text-align: left;">数据访问层 (DAO) 组件，能捕获持久化异常</td>
+<td style="text-align: left;">spring-context</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="citation" data-cites="Controller">@Controller</span></td>
+<td style="text-align: left;">表现层 (Web) 组件</td>
+<td style="text-align: left;">spring-web</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="citation" data-cites="RestController">@RestController</span></td>
+<td style="text-align: left;"><span class="citation" data-cites="Controller">@Controller</span> + <span class="citation" data-cites="ResponseBody">@ResponseBody</span>，用于 RESTful API</td>
+<td style="text-align: left;">spring-web</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="citation" data-cites="Configuration">@Configuration</span></td>
+<td style="text-align: left;">声明配置类</td>
+<td style="text-align: left;">spring-context</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="citation" data-cites="Bean">@Bean</span></td>
+<td style="text-align: left;">在配置类中声明一个 Bean</td>
+<td style="text-align: left;">spring-context</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="citation" data-cites="ComponentScan">@ComponentScan</span></td>
+<td style="text-align: left;">启用组件扫描</td>
+<td style="text-align: left;">spring-context</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="citation" data-cites="Autowired">@Autowired</span></td>
+<td style="text-align: left;">自动装配依赖（构造函数、Setter、字段）</td>
+<td style="text-align: left;">spring-beans</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="citation" data-cites="Qualifier">@Qualifier</span></td>
+<td style="text-align: left;">当有多个相同类型的 Bean 时，指定名称进行注入</td>
+<td style="text-align: left;">spring-beans</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="citation" data-cites="Value">@Value</span></td>
+<td style="text-align: left;">注入属性值（字面量、SpEL 表达式）</td>
+<td style="text-align: left;">spring-beans</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="citation" data-cites="Scope">@Scope</span></td>
+<td style="text-align: left;">定义 Bean 的作用域 (singleton, prototype 等)</td>
+<td style="text-align: left;">spring-beans</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="citation" data-cites="Primary">@Primary</span></td>
+<td style="text-align: left;">当有多个候选 Bean 时，优先选择此 Bean</td>
+<td style="text-align: left;">spring-beans</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="citation" data-cites="PostConstruct">@PostConstruct</span></td>
+<td style="text-align: left;">定义初始化方法</td>
+<td style="text-align: left;">javax.annotation</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="citation" data-cites="PreDestroy">@PreDestroy</span></td>
+<td style="text-align: left;">定义销毁前方法</td>
+<td style="text-align: left;">javax.annotation</td>
+</tr>
+</tbody>
+</table>
+<h3 id="x0502-常用注解速查表按分层架构模式">0x0502 常用注解速查表（按分层架构模式）</h3>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 20%" />
+<col style="width: 54%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>分层名称</th>
+<th>常用注解</th>
+<th>注解具体用途</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>控制层（Controller）</strong></td>
+<td><code>@RestController</code></td>
+<td>标记为 REST 接口控制器，返回 JSON 数据（替代<code>@Controller + @ResponseBody</code>）</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><code>@Controller</code></td>
+<td>标记为传统 MVC 控制器，返回视图（如 HTML 页面）</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><code>@RequestMapping</code></td>
+<td>映射请求路径（可指定请求方法），用于类 / 方法上（如<code>@RequestMapping("/user")</code>）</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><code>@GetMapping("/xxx")</code></td>
+<td>专门映射 GET 请求（查询类接口），简化<code>@RequestMapping(method=GET)</code></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><code>@PostMapping("/xxx")</code></td>
+<td>专门映射 POST 请求（新增 / 修改类接口）</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><code>@RequestParam</code></td>
+<td>获取 URL 中的键值对参数（如<code>/user?name=张三</code>）</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><code>@PathVariable</code></td>
+<td>获取 URL 路径中的参数（如<code>/user/&#123;id&#125;</code>）</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><code>@RequestBody</code></td>
+<td>获取请求体中的 JSON 数据，绑定到 DTO 对象（POST 请求专用）</td>
+</tr>
+<tr class="odd">
+<td><strong>服务层（Service）</strong></td>
+<td><code>@Service</code></td>
+<td>标记类为 Spring 管理的业务层 Bean，让 Spring 创建并管理实例</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><code>@Transactional</code></td>
+<td>给方法 / 类添加声明式事务，保证数据库操作原子性（出错自动回滚）</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><code>@Autowired</code></td>
+<td>自动注入依赖的 Bean（如注入 DAO），推荐用构造注入替代字段注入</td>
+</tr>
+<tr class="even">
+<td><strong>数据访问层（DAO/Mapper）</strong></td>
+<td><code>@Mapper</code></td>
+<td>MyBatis 注解，标记接口为数据访问层，自动生成实现类（无需写 XML）</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><code>@Repository</code></td>
+<td>JPA 注解，标记类为数据访问层 Bean，Spring 自动管理</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><code>@Select("SQL")</code></td>
+<td>MyBatis 注解，执行查询 SQL（替代 XML 中的 select 标签）</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><code>@Insert("SQL")</code></td>
+<td>MyBatis 注解，执行插入 SQL</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><code>@Update("SQL")</code></td>
+<td>MyBatis 注解，执行更新 SQL</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><code>@Delete("SQL")</code></td>
+<td>MyBatis 注解，执行删除 SQL</td>
+</tr>
+<tr class="even">
+<td><strong>实体层（Entity/DTO/VO）</strong></td>
+<td><code>@Data</code></td>
+<td>Lombok 注解，自动生成 get/set/toString/equals 等方法，简化代码</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><code>@NoArgsConstructor</code></td>
+<td>Lombok 注解，生成无参构造方法（Spring/MyBatis 反射需要）</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><code>@AllArgsConstructor</code></td>
+<td>Lombok 注解，生成全参构造方法（方便创建对象）</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><code>@Entity</code></td>
+<td>JPA 注解，标记类为数据库表对应的实体类</td>
+</tr>
+<tr class="even">
+<td><strong>工具层（Util）</strong></td>
+<td><code>@Component</code></td>
+<td>标记通用工具类为 Spring Bean（如全局异常处理器、自定义工具类）</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><code>@RestControllerAdvice</code></td>
+<td>全局异常处理器，捕获 Controller 层所有异常并统一返回格式</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><code>@ExceptionHandler</code></td>
+<td>配合<code>@RestControllerAdvice</code>，指定捕获的异常类型（如<code>Exception.class</code>）</td>
+</tr>
+</tbody>
+</table>
+<section class="footnotes" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>对象 A 不再负责创建 B，而是将创建 B 的控制权“反转”给一个第三方（Spring 容器）。容器负责创建 B 并注入到 A 中。<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>Bean 就是由 Spring IoC 容器创建、管理、销毁的 Java 对象。；<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p>对象 A 不再负责创建 B，而是将创建 B 的控制权“反转”给一个第三方（Spring 容器）。容器负责创建 B 并注入到 A 中。<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4" role="doc-endnote"><p>DI 是 IoC 的一种实现方式。它指的是 Spring 容器将对象所依赖的其他对象（依赖）<strong>注入</strong>到该对象中。<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5" role="doc-endnote"><ol type="1">
+<li><code>ApplicationContext</code>是<code>BeanFactory</code>的 “增强版”，自带资源加载、国际化、事件发布等功能；2. Spring Boot 启动后，<code>ApplicationContext</code>就是整个应用的 “容器入口”，你可以通过它获取所有 Bean；3. 配置文件（application.yml）的加载、环境变量的读取，都是 Context 模块做的。</li>
+</ol>
+<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></li>
+<li id="fn6" role="doc-endnote"><p>链接数据库的操作。<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7" role="doc-endnote"><p>ORM 即对象关系映射，是将数据库表与编程语言对象映射的技术，开发者可用面向对象方式操作数据库，无需直接写 SQL 语句。<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8" role="doc-endnote"><p>Java 平台面向消息中间件(MOM)的 API，用于应用程序间异步通信。<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://ffxxfan.github.io/">华生</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://ffxxfan.github.io/2026/03/05/Spring%20%E5%AD%A6%E4%B9%A0/">https://ffxxfan.github.io/2026/03/05/Spring 学习/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://ffxxfan.github.io" target="_blank">华生</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/avatar.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.4/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.4/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/02/03/%E5%AD%98%E5%9C%A8%E7%9A%84%E6%84%8F%E4%B9%89/" title="存在的意义"><img class="cover" src="https://raw.githubusercontent.com/ffxxfan/pictures/main/image-20250430191426501.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">存在的意义</div></div><div class="info-2"><div class="info-item-1">...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#spring-%E5%AD%A6%E4%B9%A0"><span class="toc-text">Spring 学习</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#x01-%E4%BB%80%E4%B9%88%E6%98%AF-spring"><span class="toc-text">0x01 什么是 Spring</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#x0101-spring-%E5%AE%9A%E4%B9%89"><span class="toc-text">0x0101 Spring 定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#x0102-%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8-spring"><span class="toc-text">0x0102 为什么使用 Spring</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#x02-spring-%E7%9A%84%E6%A0%B8%E5%BF%83%E6%9E%B6%E6%9E%84"><span class="toc-text">0x02 Spring 的核心架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#x0201-%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80-spring-core-container"><span class="toc-text">0x0201 核心基础 Spring Core Container</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#x0202-%E9%80%9A%E7%94%A8%E5%A2%9E%E5%BC%BA-aop-messaging"><span class="toc-text">0x0202 通用增强 AOP Messaging</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#x020201-aop-and-instrumentationaop-%E5%A2%9E%E5%BC%BA"><span class="toc-text">0x020201 AOP and Instrumentation（AOP 增强）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#x020202-messaging%E6%B6%88%E6%81%AF%E6%A8%A1%E5%9D%97"><span class="toc-text">0x020202 Messaging（消息模块）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#x0203-%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF-data-web"><span class="toc-text">0x0203 业务场景 Data Web</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#x020301-data-accessintegration%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE-%E9%9B%86%E6%88%90"><span class="toc-text">0x020301 Data Access&#x2F;Integration（数据访问 &#x2F; 集成）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#x020302-webweb-%E6%A8%A1%E5%9D%97"><span class="toc-text">0x020302 Web（Web 模块）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#x0204-%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7-test"><span class="toc-text">0x0204 辅助工具 Test</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#x03-%E5%AE%9E%E9%99%85%E4%BD%BF%E7%94%A8%E9%80%BB%E8%BE%91"><span class="toc-text">0x03 实际使用逻辑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#x04-%E5%85%A5%E9%97%A8%E4%BD%BF%E7%94%A8"><span class="toc-text">0x04 入门使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#x0401-pom.xml-%E6%96%87%E4%BB%B6%E9%85%8D%E7%BD%AE"><span class="toc-text">0x0401 pom.xml 文件配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#x0402-%E5%88%86%E5%B1%82%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F"><span class="toc-text">0x0402 分层架构模式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#x05-%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3%E9%80%9F%E6%9F%A5%E8%A1%A8"><span class="toc-text">0x05 常用注解速查表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#x0501-%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3%E9%80%9F%E6%9F%A5%E8%A1%A8"><span class="toc-text">0x0501 常用注解速查表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#x0502-%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3%E9%80%9F%E6%9F%A5%E8%A1%A8%E6%8C%89%E5%88%86%E5%B1%82%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F"><span class="toc-text">0x0502 常用注解速查表（按分层架构模式）</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2026 By 华生</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div><div class="footer_custom_text">一起学会闪闪发光吧！</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.3.5"></script><script src="/js/main.js?v=5.3.5"></script><script src="/js/tw_cn.js?v=5.3.5"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.4/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
